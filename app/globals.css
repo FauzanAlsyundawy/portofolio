@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "@xyflow/react/dist/style.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-canvas: #ffffff;
+  --color-surface: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-ink: #0f172a;
+  --color-muted: #475569;
+  --color-signal: #0891b2;
+  --color-signal-dark: #0e7490;
+  --color-status-up: #059669;
+  --color-status-warn: #d97706;
+  --color-status-critical: #dc2626;
+
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html.dark,
+.dark {
+  --color-canvas: #0b1220;
+  --color-surface: #0f172a;
+  --color-border: #1e293b;
+  --color-ink: #e2e8f0;
+  --color-muted: #94a3b8;
+  --color-signal: #22d3ee;
+  --color-signal-dark: #06b6d4;
+  --color-status-up: #34d399;
+  --color-status-warn: #fbbf24;
+  --color-status-critical: #f87171;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html.dark,
+  .dark {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans;
+    margin: 0;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  section {
+    scroll-margin-top: 5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .container-section {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+}
