@@ -6,7 +6,7 @@ export const personal = {
   location: "Jakarta, Indonesia",       // TODO: kota & negara
   experience: "7+ tahun",              // TODO: lama pengalaman
   focus:
-    "Fokus: dynamic routing, BGP multihoming, OSPF area design, dan IPv4 engineering skala enterprise serta Membangun, mengamankan, dan mengoptimalkan infrastruktur jaringan serta administrasi server untuk konektivitas tanpa batas..",
+    "Fokus: dynamic routing, BGP multihoming, dan IPv4 engineering skala enterprise serta Membangun, mengamankan, dan mengoptimalkan infrastruktur jaringan serta administrasi server untuk konektivitas tanpa batas..",
   cvUrl: "/cv.pdf",                    // TODO: pastikan file cv.pdf ada di folder public/
   email: "fauzan@example.com",         // TODO: email asli
   whatsapp: "6281234567890",           // TODO: nomor WhatsApp (format 62xxx)

@@ -17,21 +17,6 @@ export const projects: CaseStudy[] = [
     cliScreenshots: [],
   },
   {
-    slug: "ospf-area-design",
-    title: "Redesign OSPF Area Design untuk 40+ Site",
-    summary:
-      "Mengoptimalkan konvergensi OSPF dengan area partitioning dan summarization di border router.",
-    problem:
-      "Topologi OSPF flat memicu flooding database yang besar dan konvergensi lambat (> 30 detik) saat ada link failure.",
-    solution:
-      "Memetakan site ke area OSPF berdasarkan fungsi (Core / Distribution / Access), mengaktifkan stub area, dan route summarization di ABR.",
-    impact:
-      "Konvergensi link failure turun ke < 8 detik. SPF calculation memory usage di core router turun 60%.",
-    techBadges: ["OSPF", "Cisco IOS-XE", "VLAN", "Route Summarization"],
-    topologyImage: undefined,
-    cliScreenshots: [],
-  },
-  {
     slug: "ipv4-engineering-address-plan",
     title: "IPv4 Engineering & Address Plan Terstruktur",
     summary:

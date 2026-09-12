@@ -23,10 +23,10 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: "Fauzan Alsyundawy — Network Engineer | BGP, OSPF, IPv4 Infrastructure",
-  description: "Senior Network Engineer spesialis BGP multihoming, OSPF area design, dan IPv4 engineering skala enterprise. Berbasis di Jakarta, Indonesia.",
+  description: "Senior Network Engineer spesialis BGP multihoming, dan IPv4 engineering skala enterprise. Berbasis di Jakarta, Indonesia.",
   openGraph: {
     title: "Fauzan Alsyundawy — Network Engineer | BGP, OSPF, IPv4",
-    description: "Senior Network Engineer spesialis BGP multihoming, OSPF, IPv4 engineering skala enterprise.",
+    description: "Senior Network Engineer spesialis BGP multihoming, IPv4 engineering skala enterprise.",
     type: "website",
   },
 };
