@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { personal } from "@/data/config";
 import { Button } from "@/components/ui/button";
@@ -48,66 +49,27 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative hidden lg:block">
-            <svg viewBox="0 0 500 400" className="w-full max-w-lg mx-auto" aria-hidden="true">
-              <defs>
-                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="var(--color-signal)" stopOpacity="0" />
-                  <stop offset="50%" stopColor="var(--color-signal)" stopOpacity="1" />
-                  <stop offset="100%" stopColor="var(--color-signal)" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-
-              <motion.circle
-                cx="250" cy="200" r="6" fill="var(--color-signal)"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-              />
-              <motion.circle cx="120" cy="80" r="5" fill="var(--color-ink)" initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ delay: 0.2 }} />
-              <motion.circle cx="380" cy="100" r="5" fill="var(--color-ink)" initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ delay: 0.3 }} />
-              <motion.circle cx="100" cy="280" r="5" fill="var(--color-ink)" initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ delay: 0.4 }} />
-              <motion.circle cx="400" cy="300" r="5" fill="var(--color-ink)" initial={{ opacity: 0 }} animate={{ opacity: 0.8 }} transition={{ delay: 0.5 }} />
-
-              <motion.path
-                d="M250 200 L120 80"
-                fill="none" stroke="url(#lineGrad)" strokeWidth="2"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 0.5 }}
-              />
-              <motion.path
-                d="M250 200 L380 100"
-                fill="none" stroke="url(#lineGrad)" strokeWidth="2"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 0.7 }}
-              />
-              <motion.path
-                d="M250 200 L100 280"
-                fill="none" stroke="url(#lineGrad)" strokeWidth="2"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 0.9 }}
-              />
-              <motion.path
-                d="M250 200 L400 300"
-                fill="none" stroke="url(#lineGrad)" strokeWidth="2"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.5, delay: 1.1 }}
-              />
-
-              <circle cx="120" cy="80" r="24" fill="var(--color-surface)" stroke="var(--color-border)" strokeWidth="1" />
-              <text x="120" y="84" textAnchor="middle" fontSize="9" fill="var(--color-muted)" fontFamily="IBM Plex Mono">Core</text>
-              <circle cx="380" cy="100" r="24" fill="var(--color-surface)" stroke="var(--color-border)" strokeWidth="1" />
-              <text x="380" y="104" textAnchor="middle" fontSize="9" fill="var(--color-muted)" fontFamily="IBM Plex Mono">IXP</text>
-              <circle cx="100" cy="280" r="24" fill="var(--color-surface)" stroke="var(--color-border)" strokeWidth="1" />
-              <text x="100" y="284" textAnchor="middle" fontSize="9" fill="var(--color-muted)" fontFamily="IBM Plex Mono">Edge</text>
-              <circle cx="400" cy="300" r="24" fill="var(--color-surface)" stroke="var(--color-border)" strokeWidth="1" />
-              <text x="400" y="304" textAnchor="middle" fontSize="9" fill="var(--color-muted)" fontFamily="IBM Plex Mono">Cloud</text>
-            </svg>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="relative flex justify-center lg:justify-end mt-8 lg:mt-0"
+          >
+            <div className="relative w-64 sm:w-72 lg:w-80 aspect-[541/799] max-w-full">
+              {/* Decorative subtle backdrop glow */}
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-signal/25 via-signal/10 to-transparent blur-xl -z-10 opacity-70" />
+              <div className="relative h-full w-full rounded-2xl overflow-hidden border border-border shadow-2xl bg-surface">
+                <Image
+                  src="/profile.png"
+                  alt={personal.name}
+                  width={541}
+                  height={799}
+                  priority
+                  className="h-full w-full object-cover object-top transition-transform duration-500 hover:scale-102"
+                />
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
