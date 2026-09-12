@@ -30,6 +30,7 @@ export interface Certification {
 export interface SkillCategory {
   name: string;
   icon: string;
+  score: number;
   items: { label: string; icon?: string }[];
 }
 
