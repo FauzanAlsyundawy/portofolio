@@ -1,18 +1,17 @@
 export const personal = {
-  // TODO: Ganti semua nilai di bawah dengan data asli Anda sebelum deploy
-  name: "Fauzan Alsyundawy",           // TODO: nama lengkap
+  name: "Fauzan Alsyundawy",
   title: "Junior Network Engineer / Infrastructure / Field Operations",
   availability: "Available for new opportunities",
-  location: "Jakarta, Indonesia",       // TODO: kota & negara
-  experience: "7+ tahun",              // TODO: lama pengalaman
+  location: "Jakarta, Indonesia",
+  experience: "7+ tahun",
   focus:
     "Fokus: dynamic routing, BGP multihoming, dan IPv4 engineering skala enterprise serta Membangun, mengamankan, dan mengoptimalkan infrastruktur jaringan serta administrasi server untuk konektivitas tanpa batas..",
-  cvUrl: "/cv.pdf",                    // TODO: pastikan file cv.pdf ada di folder public/
-  email: "fauzan@example.com",         // TODO: email asli
-  whatsapp: "6281234567890",           // TODO: nomor WhatsApp (format 62xxx)
-  linkedin: "https://linkedin.com/in/fauzan-alsyundawy", // TODO: URL LinkedIn
-  github: "https://github.com/fauzan-alsyundawy",        // TODO: URL GitHub
-  gitlab: "https://gitlab.com/fauzan-alsyundawy",        // TODO: URL GitLab
+  cvUrl: "/cv.pdf",
+  email: "fauzan@example.com",
+  whatsapp: "6281234567890",
+  linkedin: "https://linkedin.com/in/fauzan-alsyundawy",
+  github: "https://github.com/fauzan-alsyundawy",
+  gitlab: "https://gitlab.com/fauzan-alsyundawy",
 };
 
 export const metrics = [
