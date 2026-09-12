@@ -7,8 +7,8 @@ import { Download, Mail } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-dvh flex items-center overflow-hidden pt-16">
-      <div className="container-section relative z-10 py-20 lg:py-32">
+    <section className="relative flex items-center overflow-hidden pt-24 pb-8 sm:pb-12 lg:pt-28 lg:pb-14">
+      <div className="container-section relative z-10 py-8 lg:py-12">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-status-up/30 bg-status-up/5 px-3 py-1 text-xs font-medium text-status-up mb-6">

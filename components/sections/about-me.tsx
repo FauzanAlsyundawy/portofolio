@@ -13,7 +13,7 @@ import {
 
 export function AboutMe() {
   return (
-    <section id="about" className="py-20 bg-surface relative">
+    <section id="about" className="py-14 sm:py-16 bg-surface relative">
       {/* Target anchor to maintain scroll compatibility */}
       <div id="metrics" className="sr-only" aria-hidden="true" />
       <div className="container-section">
