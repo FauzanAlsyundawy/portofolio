@@ -8,7 +8,6 @@ import { Globe, Server, FlaskConical, Wrench } from "lucide-react";
 const skillCategories = [
   {
     title: "NETWORKING",
-    emoji: "🌐",
     icon: Globe,
     skills: [
       "MikroTik",
@@ -25,7 +24,6 @@ const skillCategories = [
   },
   {
     title: "SERVER & VIRTUALIZATION",
-    emoji: "🖥",
     icon: Server,
     skills: [
       "Linux",
@@ -38,7 +36,6 @@ const skillCategories = [
   },
   {
     title: "NETWORK LAB & TOOLS",
-    emoji: "🧪",
     icon: FlaskConical,
     skills: [
       "PNETLab",
@@ -50,7 +47,6 @@ const skillCategories = [
   },
   {
     title: "FIELD & INFRASTRUCTURE",
-    emoji: "⚙️",
     icon: Wrench,
     skills: [
       "Data Center Operations",
@@ -96,9 +92,8 @@ export function TechnicalSkills() {
                       <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-signal/10 text-signal text-base">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <h3 className="font-semibold text-base sm:text-lg text-ink tracking-tight flex items-center gap-2">
-                        <span>{cat.emoji}</span>
-                        <span>{cat.title}</span>
+                      <h3 className="font-semibold text-base sm:text-lg text-ink tracking-tight">
+                        {cat.title}
                       </h3>
                     </div>
 
