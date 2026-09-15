@@ -7,7 +7,6 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { Button } from "@/components/ui/button";
 import { Menu, Download, Sun, Moon } from "lucide-react";
 import { personal } from "@/data/config";
-import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/#metrics", label: "Metrics" },
@@ -21,16 +20,9 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -81,7 +73,7 @@ export function Navbar() {
               alt="Falsyundawy IT Support"
               width={343}
               height={280}
-              className="h-14 sm:h-16 md:h-[72px] w-auto object-contain dark:hidden transition-transform duration-200 group-hover:scale-105"
+              className="h-14 sm:h-16 md:h-18 w-auto object-contain dark:hidden transition-transform duration-200 group-hover:scale-105"
               priority
             />
             <Image
@@ -89,7 +81,7 @@ export function Navbar() {
               alt="Falsyundawy IT Support"
               width={343}
               height={280}
-              className="h-14 sm:h-16 md:h-[72px] w-auto object-contain hidden dark:block transition-transform duration-200 group-hover:scale-105"
+              className="h-14 sm:h-16 md:h-18 w-auto object-contain hidden dark:block transition-transform duration-200 group-hover:scale-105"
               priority
             />
           </div>

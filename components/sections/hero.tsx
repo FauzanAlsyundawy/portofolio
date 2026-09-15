@@ -55,9 +55,9 @@ export function Hero() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative flex items-center justify-center mt-8 lg:mt-0"
           >
-            <div className="relative w-64 sm:w-72 lg:w-80 aspect-[541/799] max-w-full mx-auto">
+            <div className="relative w-64 sm:w-72 lg:w-80 aspect-541/799 max-w-full mx-auto">
               {/* Decorative subtle backdrop glow */}
-              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-signal/25 via-signal/10 to-transparent blur-xl -z-10 opacity-70" />
+              <div className="absolute -inset-2 rounded-3xl bg-linear-to-tr from-signal/25 via-signal/10 to-transparent blur-xl -z-10 opacity-70" />
               <div className="relative h-full w-full rounded-2xl overflow-hidden border border-border shadow-2xl bg-surface">
                 <Image
                   src="/profile.png"

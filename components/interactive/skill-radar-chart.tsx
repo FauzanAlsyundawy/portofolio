@@ -20,7 +20,7 @@ const radarData = skills.map((s) => ({
 
 export default function SkillRadarChart() {
   return (
-    <div className="w-full h-[320px] flex items-center justify-center">
+    <div className="w-full h-80 flex items-center justify-center">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="60%">
           <PolarGrid stroke="var(--color-border)" />
