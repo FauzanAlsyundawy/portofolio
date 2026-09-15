@@ -75,30 +75,30 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 md:h-24 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-300">
         <Link
           href="/"
-          className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-signal rounded-md"
+          className="flex items-center gap-3 sm:gap-4 group focus:outline-none focus-visible:ring-2 focus-visible:ring-signal rounded-md py-1"
         >
           <div className="relative flex items-center shrink-0">
             <Image
               src="/logo-light.png"
               alt="Falsyundawy IT Support"
-              width={120}
-              height={98}
-              className="h-8 sm:h-9 w-auto object-contain dark:hidden transition-transform duration-200 group-hover:scale-105"
+              width={343}
+              height={280}
+              className="h-14 sm:h-16 md:h-[72px] w-auto object-contain dark:hidden transition-transform duration-200 group-hover:scale-105"
               priority
             />
             <Image
               src="/logo-dark.png"
               alt="Falsyundawy IT Support"
-              width={120}
-              height={98}
-              className="h-8 sm:h-9 w-auto object-contain hidden dark:block transition-transform duration-200 group-hover:scale-105"
+              width={343}
+              height={280}
+              className="h-14 sm:h-16 md:h-[72px] w-auto object-contain hidden dark:block transition-transform duration-200 group-hover:scale-105"
               priority
             />
           </div>
-          <span className="font-sans font-bold text-sm sm:text-base tracking-tight text-black dark:text-white whitespace-nowrap transition-colors">
+          <span className="font-sans font-bold text-base sm:text-lg md:text-xl tracking-tight text-black dark:text-white whitespace-nowrap transition-colors">
             {personal.name}
           </span>
         </Link>
