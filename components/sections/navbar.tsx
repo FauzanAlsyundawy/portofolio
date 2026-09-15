@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, Download, Sun, Moon } from "lucide-react";
@@ -75,8 +76,31 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="font-mono text-sm font-semibold tracking-tight text-ink">
-          {personal.name.split(" ")[0]}<span className="text-signal">.net</span>
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-signal rounded-md"
+        >
+          <div className="relative flex items-center shrink-0">
+            <Image
+              src="/logo-light.png"
+              alt="Falsyundawy IT Support"
+              width={120}
+              height={98}
+              className="h-8 sm:h-9 w-auto object-contain dark:hidden transition-transform duration-200 group-hover:scale-105"
+              priority
+            />
+            <Image
+              src="/logo-dark.png"
+              alt="Falsyundawy IT Support"
+              width={120}
+              height={98}
+              className="h-8 sm:h-9 w-auto object-contain hidden dark:block transition-transform duration-200 group-hover:scale-105"
+              priority
+            />
+          </div>
+          <span className="font-sans font-bold text-sm sm:text-base tracking-tight text-black dark:text-white whitespace-nowrap transition-colors">
+            {personal.name}
+          </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6" aria-label="Main">
