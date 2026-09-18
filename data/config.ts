@@ -3,7 +3,7 @@ export const personal = {
   title: "Junior Network Engineer / Infrastructure / Field Operations",
   availability: "Available for new opportunities",
   location: "Jakarta, Indonesia",
-  experience: "7+ tahun",
+  experience: "1+ tahun",
   focus:
     "Fokus: dynamic routing, BGP multihoming, dan IPv4 engineering skala enterprise serta Membangun, mengamankan, dan mengoptimalkan infrastruktur jaringan serta administrasi server untuk konektivitas tanpa batas..",
   cvUrl: "/cv.pdf",

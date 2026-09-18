@@ -11,7 +11,6 @@ import { personal } from "@/data/config";
 const navLinks = [
   { href: "/#metrics", label: "Metrics" },
   { href: "/#skills", label: "Skills" },
-  { href: "/#case-studies", label: "Case Studies" },
   { href: "/#experience", label: "Experience" },
   { href: "/#certifications", label: "Certifications" },
   { href: "/#lab", label: "Lab" },

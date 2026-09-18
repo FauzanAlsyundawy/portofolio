@@ -2,37 +2,26 @@ import { type ExperienceEntry } from "./types";
 
 export const experience: ExperienceEntry[] = [
   {
-    company: "PT. Nusantara Broadband",
-    role: "Senior Network Engineer",
-    startDate: "2022-03",
+    company: "PT Media Cepat Indonesia (Rapid Network)",
+    role: "Field Operations (Probation)",
+    startDate: "20 Desember 2025",
     highlights: [
-      "Merancang dan mengoperasikan infrastruktur routing untuk 150+ router di 28 site.",
-      "Memimpin migrasi dari OSPF single-area ke multi-area, mengurangi konvergensi dari 28 detik ke 7 detik.",
-      "Mengelola 4 transit upstream dan 2 peering di IXP Jakarta, menjaga SLA uptime 99,97%.",
-      "Membangun pipeline konfigurasi otomatis menggunakan Ansible + Netmiko, mengurangi human error 80%.",
+      "Operasional dan penanganan infrastruktur fisik jaringan di lapangan.",
+      "Instalasi, penarikan kabel, konfigurasi, dan pemeliharaan perangkat jaringan on-site.",
+      "Troubleshooting konektivitas jaringan end-to-end serta penanganan cepat insiden di lokasi.",
+      "Koordinasi berkala dengan tim NOC dalam monitoring stabilitas dan pemulihan gangguan link transmisi.",
     ],
   },
   {
-    company: "PT. Sentral Data Solusi",
-    role: "Network Engineer",
-    startDate: "2019-08",
-    endDate: "2022-02",
+    company: "PT Media Cepat Indonesia (Rapid Network)",
+    role: "Network Engineer Intern (Praktik Kerja Lapangan / PKL)",
+    startDate: "1 Juli 2025",
+    endDate: "19 Desember 2025",
     highlights: [
-      "Menangani 200+ tiket insiden jaringan per bulan dengan MTTR rata-rata < 12 menit.",
-      "Mengimplementasikan BGP multihoming 2 upstream untuk reducing downtime dari 4 jam/bulan ke < 30 menit/bulan.",
-      "Mendesain address plan IPv4 terstruktur untuk 8.000+ endpoint, meningkatkan efisiensi alokasi blok dari 35% menjadi 72%.",
-      "Mengoperasikan monitoring Zabbix + Grafana untuk 60+ perangkat jaringan.",
-    ],
-  },
-  {
-    company: "PT. Teknologi Mandiri",
-    role: "Junior Network Administrator",
-    startDate: "2017-01",
-    endDate: "2019-07",
-    highlights: [
-      "Mengelola infrastruktur LAN/WAN untuk kantor cabang 5 kota.",
-      "Mengonfigurasi dan memelihara router Cisco dan MikroTik.",
-      "Mendokumentasikan konfigurasi dan prosedur operasi harian untuk tim support.",
+      "Pemeliharaan Data Center: Melakukan pemeliharaan rutin, monitoring lingkungan server/rak, dan perapian cabling.",
+      "Sistem Administrasi Server (Proxmox): Mengelola sistem administrasi server berbasis Proxmox VE, konfigurasi VM, dan container.",
+      "Manajemen & Troubleshooting Perangkat Jaringan: Monitoring, konfigurasi switch/router, dan penanganan kendala jaringan.",
+      "Riset & Implementasi Routing: Melakukan riset serta implementasi routing protokol untuk kebutuhan optimalisasi jaringan.",
     ],
   },
 ];
