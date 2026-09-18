@@ -15,6 +15,7 @@ export interface ExperienceEntry {
   role: string;
   startDate: string;
   endDate?: string;
+  logo?: string;
   highlights: string[];
 }
 
