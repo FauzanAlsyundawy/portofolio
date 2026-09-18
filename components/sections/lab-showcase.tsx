@@ -1,39 +1,31 @@
 "use client";
 
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { SubnetCalculator } from "@/components/interactive/subnet-calculator";
-import { CliTerminal } from "@/components/interactive/cli-terminal";
+import { Calculator } from "lucide-react";
 
 export function LabShowcase() {
   return (
-    <section id="lab" className="py-20 bg-canvas">
+    <section id="ip-calculator" className="py-20 bg-canvas relative">
+      {/* Anchor fallback for lab link */}
+      <div id="lab" className="sr-only" aria-hidden="true" />
       <div className="container-section">
-        <h2 className="text-2xl font-semibold tracking-tight text-ink mb-2">
-          Interaktif / Lab Showcase
-        </h2>
-        <p className="text-muted mb-8">
-          Kalkulator subnet dan preview CLI untuk menunjang validasi kompetensi teknis.
-        </p>
+        <div className="mb-8">
+          <div className="inline-flex items-center gap-2 rounded-full border border-signal/30 bg-signal/5 px-3 py-1 text-xs font-medium text-signal mb-3">
+            <Calculator className="h-3.5 w-3.5" />
+            <span>Interactive Network Utility</span>
+          </div>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink uppercase">
+            IP Calculator
+          </h2>
+          <p className="text-sm text-muted mt-1">
+            Kalkulator subnetting dan analisis pengalamatan IPv4 (CIDR, netmask, broadcast, dan rentang host usable) untuk perencanaan jaringan.
+          </p>
+        </div>
 
-        <Tabs defaultValue="subnet" className="w-full">
-          <TabsList className="mb-6">
-            <TabsTrigger value="subnet">Subnet Calculator</TabsTrigger>
-            <TabsTrigger value="cli">Terminal CLI</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="subnet">
-            <Card className="p-6">
-              <SubnetCalculator />
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="cli">
-            <Card className="p-0 overflow-hidden">
-              <CliTerminal />
-            </Card>
-          </TabsContent>
-        </Tabs>
+        <Card className="p-6 sm:p-8 bg-surface/50 border border-border shadow-xs">
+          <SubnetCalculator />
+        </Card>
       </div>
     </section>
   );

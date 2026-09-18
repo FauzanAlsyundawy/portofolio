@@ -7,8 +7,9 @@ export const personal = {
   focus:
     "Fokus: dynamic routing, BGP multihoming, dan IPv4 engineering skala enterprise serta Membangun, mengamankan, dan mengoptimalkan infrastruktur jaringan serta administrasi server untuk konektivitas tanpa batas..",
   cvUrl: "/cv.pdf",
-  email: "fauzan@example.com",
-  whatsapp: "6281234567890",
+  email: "falsyundawy@gmail.com",
+  serverEmail: "falsyundawy@mail.indocyber.my.id",
+  whatsapp: "+621399823073",
   linkedin: "https://linkedin.com/in/fauzan-alsyundawy",
   github: "https://github.com/fauzan-alsyundawy",
   gitlab: "https://gitlab.com/fauzan-alsyundawy",
@@ -44,10 +45,11 @@ export const metrics = [
 ];
 
 export const contactSocials = [
-  { name: "Email", href: `mailto:${personal.email}`, icon: "Mail" },
+  { name: "Email Pribadi", href: `mailto:${personal.email}`, icon: "Mail" },
+  { name: "Email Server", href: `mailto:${personal.serverEmail}`, icon: "Mail" },
   {
     name: "WhatsApp",
-    href: `https://wa.me/${personal.whatsapp.replace(/^0/, "62")}?text=Halo%20saya%20tertarik%20dengan%20portofolio%20Anda`,
+    href: "https://wa.me/621399823073?text=Halo%20Fauzan,%20saya%20tertarik%20untuk%20berkolaborasi",
     icon: "MessageCircle",
   },
   { name: "LinkedIn", href: personal.linkedin, icon: "Linkedin" },

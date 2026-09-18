@@ -9,12 +9,13 @@ import { Menu, Download, Sun, Moon } from "lucide-react";
 import { personal } from "@/data/config";
 
 const navLinks = [
-  { href: "/#metrics", label: "Metrics" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#experience", label: "Experience" },
-  { href: "/#certifications", label: "Certifications" },
-  { href: "/#lab", label: "Lab" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/#about", label: "Tentang Saya" },
+  { href: "/#technical-skills", label: "Technical Skills" },
+  { href: "/#skills", label: "Tools & Skills" },
+  { href: "/#ip-calculator", label: "IP Calculator" },
+  { href: "/#experience", label: "Pengalaman" },
+  { href: "/#certifications", label: "Sertifikasi" },
+  { href: "/#contact", label: "Kontak" },
   { href: "/tools", label: "Tools" },
 ];
 
