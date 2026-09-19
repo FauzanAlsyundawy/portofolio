@@ -43,30 +43,50 @@ function ContactFooter() {
 
   const onSubmit = async (data: FormValues) => {
     setSubmitting(true);
-    const result = await sendContactMessage(data);
-    if (result.ok) {
-      if (result.useClientFallback) {
-        toast.success(`Membuka email client untuk mengirim pesan ke ${data.targetEmail}...`);
-        const mailtoUrl = `mailto:${data.targetEmail}?subject=${encodeURIComponent(
-          `[Kolaborasi] ${data.subject}`
-        )}&body=${encodeURIComponent(
-          `Halo Fauzan,\n\nNama Pengirim: ${data.name}\nEmail Pengirim: ${data.email}\n\nIsi Pesan:\n${data.message}`
-        )}`;
-        window.open(mailtoUrl, "_blank");
+    try {
+      const result = await sendContactMessage(data);
+
+      if (result.ok) {
+        if (result.useClientFallback) {
+          // Solusi Full-Stack untuk menghilangkan tab about:blank:
+          // 1. Jika tujuan email adalah Gmail pribadi: buka langsung antarmuka Gmail Web Compose
+          if (data.targetEmail === "falsyundawy@gmail.com") {
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+              data.targetEmail
+            )}&su=${encodeURIComponent(`[Kolaborasi Portfolio] ${data.subject}`)}&body=${encodeURIComponent(
+              `Halo Fauzan,\n\nNama Pengirim: ${data.name}\nEmail Pengirim: ${data.email}\n\nIsi Pesan:\n${data.message}`
+            )}`;
+            window.open(gmailUrl, "_blank");
+            toast.success("Membuka Gmail Web untuk mengirim pesan kolaborasi Anda...");
+          } else {
+            // 2. Jika tujuan email server: gunakan window.location.href (bukan _blank agar tidak memicu about:blank)
+            const mailtoUrl = `mailto:${data.targetEmail}?subject=${encodeURIComponent(
+              `[Kolaborasi Portfolio] ${data.subject}`
+            )}&body=${encodeURIComponent(
+              `Halo Fauzan,\n\nNama Pengirim: ${data.name}\nEmail Pengirim: ${data.email}\n\nIsi Pesan:\n${data.message}`
+            )}`;
+            window.location.href = mailtoUrl;
+            toast.success(`Membuka aplikasi email menuju ${data.targetEmail}...`);
+          }
+        } else {
+          toast.success(`Pesan kolaborasi berhasil terkirim langsung ke ${data.targetEmail}!`);
+        }
+
+        reset({
+          name: "",
+          email: "",
+          targetEmail: data.targetEmail,
+          subject: "",
+          message: "",
+        });
       } else {
-        toast.success(`Pesan kolaborasi berhasil dikirimkan ke ${data.targetEmail}!`);
+        toast.error(result.error || "Gagal mengirim pesan.");
       }
-      reset({
-        name: "",
-        email: "",
-        targetEmail: data.targetEmail,
-        subject: "",
-        message: "",
-      });
-    } else {
-      toast.error(result.error || "Gagal mengirim pesan. Silakan hubungi langsung via WhatsApp atau email.");
+    } catch {
+      toast.error("Terjadi kendala saat mengirim pesan.");
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
   };
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
