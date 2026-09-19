@@ -47,29 +47,15 @@ function ContactFooter() {
       const result = await sendContactMessage(data);
 
       if (result.ok) {
-        if (result.useClientFallback) {
-          // Solusi Full-Stack untuk menghilangkan tab about:blank:
-          // 1. Jika tujuan email adalah Gmail pribadi: buka langsung antarmuka Gmail Web Compose
-          if (data.targetEmail === "falsyundawy@gmail.com") {
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-              data.targetEmail
-            )}&su=${encodeURIComponent(`[Kolaborasi Portfolio] ${data.subject}`)}&body=${encodeURIComponent(
-              `Halo Fauzan,\n\nNama Pengirim: ${data.name}\nEmail Pengirim: ${data.email}\n\nIsi Pesan:\n${data.message}`
-            )}`;
-            window.open(gmailUrl, "_blank");
-            toast.success("Membuka Gmail Web untuk mengirim pesan kolaborasi Anda...");
-          } else {
-            // 2. Jika tujuan email server: gunakan window.location.href (bukan _blank agar tidak memicu about:blank)
-            const mailtoUrl = `mailto:${data.targetEmail}?subject=${encodeURIComponent(
-              `[Kolaborasi Portfolio] ${data.subject}`
-            )}&body=${encodeURIComponent(
-              `Halo Fauzan,\n\nNama Pengirim: ${data.name}\nEmail Pengirim: ${data.email}\n\nIsi Pesan:\n${data.message}`
-            )}`;
-            window.location.href = mailtoUrl;
-            toast.success(`Membuka aplikasi email menuju ${data.targetEmail}...`);
-          }
+        if (result.method === "activation") {
+          toast.success(
+            "Pesan terkirim! Cek inbox/spam email Anda dan klik 'Activate Form' 1x saja agar pengiriman aktif terus.",
+            { duration: 8000 }
+          );
         } else {
-          toast.success(`Pesan kolaborasi berhasil terkirim langsung ke ${data.targetEmail}!`);
+          toast.success(`Pesan kolaborasi berhasil terkirim langsung ke ${data.targetEmail}!`, {
+            duration: 5000,
+          });
         }
 
         reset({
@@ -80,7 +66,23 @@ function ContactFooter() {
           message: "",
         });
       } else {
-        toast.error(result.error || "Gagal mengirim pesan.");
+        // Fallback darurat jika koneksi server gagal
+        if (data.targetEmail === "falsyundawy@gmail.com") {
+          const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+            data.targetEmail
+          )}&su=${encodeURIComponent(`[Kolaborasi Portfolio] ${data.subject}`)}&body=${encodeURIComponent(
+            `Halo Fauzan,\n\nNama Pengirim: ${data.name}\nEmail Pengirim: ${data.email}\n\nIsi Pesan:\n${data.message}`
+          )}`;
+          window.open(gmailUrl, "_blank");
+          toast.info("Membuka Gmail Web untuk melanjutkan pengiriman...");
+        } else {
+          const mailtoUrl = `mailto:${data.targetEmail}?subject=${encodeURIComponent(
+            `[Kolaborasi Portfolio] ${data.subject}`
+          )}&body=${encodeURIComponent(
+            `Halo Fauzan,\n\nNama Pengirim: ${data.name}\nEmail Pengirim: ${data.email}\n\nIsi Pesan:\n${data.message}`
+          )}`;
+          window.location.href = mailtoUrl;
+        }
       }
     } catch {
       toast.error("Terjadi kendala saat mengirim pesan.");
