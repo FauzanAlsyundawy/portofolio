@@ -3,9 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu, Download, Sun, Moon } from "lucide-react";
+import { Menu, X, Download, Sun, Moon } from "lucide-react";
 import { personal } from "@/data/config";
 
 const navLinks = [
@@ -19,7 +18,7 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const [sheetOpen, setSheetOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [dark, setDark] = useState(false);
 
@@ -39,6 +38,20 @@ export function Navbar() {
       }
     } catch {}
   }, []);
+
+  // Lock body scroll and listen for Escape key when mobile menu is open
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const toggleDark = () => {
     const nextDark = !dark;
@@ -134,8 +147,9 @@ export function Navbar() {
           </div>
         </nav>
 
-        {/* Mobile & Tablet Trigger */}
+        {/* Mobile & Tablet Trigger Buttons */}
         <div className="flex lg:hidden items-center gap-2">
+          {/* Light / Dark Mode Toggle */}
           <Button
             size="icon"
             variant="ghost"
@@ -151,51 +165,93 @@ export function Navbar() {
             )}
           </Button>
 
-          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="h-9 w-9" aria-label="Buka Menu Navigasi">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-80 p-6 flex flex-col justify-between">
-              <div>
-                <SheetTitle className="font-mono text-xs uppercase tracking-wider text-muted mb-6">
-                  Menu Navigasi
-                </SheetTitle>
-                <nav className="flex flex-col gap-2" aria-label="Mobile">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setSheetOpen(false)}
-                      className="px-3 py-2 text-sm font-medium text-ink hover:text-signal hover:bg-surface rounded-md transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                  <Link
-                    href="/tools"
-                    onClick={() => setSheetOpen(false)}
-                    className="px-3 py-2 text-sm font-medium text-muted hover:text-signal hover:bg-surface rounded-md transition-colors flex items-center justify-between border-t border-border/50 mt-2 pt-3"
-                  >
-                    <span>Diagnostic Tools (ISP/NOC)</span>
-                    <span className="text-[10px] font-mono bg-surface px-1.5 py-0.5 rounded border border-border">/tools</span>
-                  </Link>
-                </nav>
-              </div>
-
-              <div className="pt-6 border-t border-border/60 flex flex-col gap-3">
-                <Button size="sm" className="w-full" asChild>
-                  <a href={personal.cvUrl} download>
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Curriculum Vitae
-                  </a>
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
+          {/* Hamburger Navigation Button (3 Bars) */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="flex items-center justify-center h-9 w-9 rounded-md border border-border bg-surface/50 hover:bg-surface text-ink transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+            aria-label="Buka Menu Navigasi"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Drawer (Backdrop + Slide-out Navigation) */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          {/* Backdrop Overlay */}
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-200"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Drawer Menu */}
+          <div
+            className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-canvas border-l border-border shadow-2xl p-6 z-50 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-200"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu Navigasi Mobile"
+          >
+            <div>
+              {/* Header inside drawer */}
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-border/70">
+                <span className="font-mono text-xs uppercase tracking-wider text-muted font-semibold">
+                  Menu Navigasi
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="rounded-md p-1.5 text-muted hover:text-ink hover:bg-surface transition-colors cursor-pointer"
+                  aria-label="Tutup Menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Navigation Columns / Links */}
+              <nav className="flex flex-col gap-1" aria-label="Mobile">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="px-3.5 py-2.5 text-sm font-medium text-ink hover:text-signal hover:bg-surface/80 rounded-lg transition-colors flex items-center justify-between group"
+                  >
+                    <span>{link.label}</span>
+                    <span className="text-muted/40 group-hover:text-signal transition-colors text-xs">→</span>
+                  </Link>
+                ))}
+
+                <Link
+                  href="/tools"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3.5 py-2.5 text-sm font-medium text-signal hover:bg-surface/80 rounded-lg transition-colors flex items-center justify-between border-t border-border/50 mt-2 pt-3"
+                >
+                  <span>Diagnostic Tools (ISP/NOC)</span>
+                  <span className="text-[10px] font-mono bg-surface px-1.5 py-0.5 rounded border border-border">/tools</span>
+                </Link>
+              </nav>
+            </div>
+
+            {/* Bottom Actions inside drawer */}
+            <div className="pt-6 border-t border-border/60 flex flex-col gap-3">
+              <Button size="sm" className="w-full h-10 font-semibold" asChild>
+                <a href={personal.cvUrl} download onClick={() => setMobileMenuOpen(false)}>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Curriculum Vitae
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
