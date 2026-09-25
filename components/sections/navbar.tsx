@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Download, Sun, Moon } from "lucide-react";
+import { Download, Sun, Moon } from "lucide-react";
 import { personal } from "@/data/config";
 
 const navLinks = [
+  { href: "/#hero", label: "Beranda" },
   { href: "/#about", label: "Tentang Saya" },
   { href: "/#technical-skills", label: "Technical Skills" },
   { href: "/#skills", label: "Tools & Skills" },
@@ -39,20 +40,6 @@ export function Navbar() {
     } catch {}
   }, []);
 
-  // Lock body scroll and listen for Escape key when mobile menu is open
-  useEffect(() => {
-    if (!mobileMenuOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileMenuOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
-
   const toggleDark = () => {
     const nextDark = !dark;
     setDark(nextDark);
@@ -71,7 +58,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-canvas/90 backdrop-blur-md border-b border-border transition-all duration-200">
+    <header className="sticky top-0 z-50 w-full bg-canvas/95 backdrop-blur-md border-b border-border transition-all duration-200">
       <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 gap-4">
         {/* Logo and Brand */}
         <Link
@@ -147,109 +134,98 @@ export function Navbar() {
           </div>
         </nav>
 
-        {/* Mobile & Tablet Trigger Buttons */}
-        <div className="flex lg:hidden items-center gap-2">
-          {/* Light / Dark Mode Toggle */}
-          <Button
-            size="icon"
-            variant="ghost"
-            aria-label={dark ? "Aktifkan mode terang" : "Aktifkan mode gelap"}
-            title={dark ? "Mode Terang" : "Mode Gelap"}
-            onClick={toggleDark}
-            className="h-9 w-9 text-muted hover:text-ink cursor-pointer"
-          >
-            {mounted && dark ? (
-              <Sun className="h-4 w-4 text-signal" />
-            ) : (
-              <Moon className="h-4 w-4" />
-            )}
-          </Button>
-
-          {/* Hamburger Navigation Button (3 Bars) */}
+        {/* Mobile Hamburger Button (Only 3 clean horizontal bars on top right, exactly like reference) */}
+        <div className="flex lg:hidden items-center">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex items-center justify-center h-9 w-9 rounded-md border border-border bg-surface/50 hover:bg-surface text-ink transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-signal"
-            aria-label="Buka Menu Navigasi"
+            className="p-2 text-ink hover:text-signal rounded-md transition-colors cursor-pointer focus:outline-none"
+            aria-label="Menu Navigasi"
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
+            <svg
+              className="w-7 h-7 text-ink"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              {mobileMenuOpen ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </>
+              ) : (
+                <>
+                  <line x1="4" y1="6" x2="20" y2="6" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="18" x2="20" y2="18" />
+                </>
+              )}
+            </svg>
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer (Backdrop + Slide-out Navigation) */}
+      {/* Mobile Dropdown Menu (Centered stack directly below header, exactly matching reference image) */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop Overlay */}
-          <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity duration-200"
-            onClick={() => setMobileMenuOpen(false)}
-            aria-hidden="true"
-          />
-
-          {/* Drawer Menu */}
-          <div
-            className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-canvas border-l border-border shadow-2xl p-6 z-50 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-200"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu Navigasi Mobile"
-          >
-            <div>
-              {/* Header inside drawer */}
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-border/70">
-                <span className="font-mono text-xs uppercase tracking-wider text-muted font-semibold">
-                  Menu Navigasi
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-md p-1.5 text-muted hover:text-ink hover:bg-surface transition-colors cursor-pointer"
-                  aria-label="Tutup Menu"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-
-              {/* Navigation Columns / Links */}
-              <nav className="flex flex-col gap-1" aria-label="Mobile">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="px-3.5 py-2.5 text-sm font-medium text-ink hover:text-signal hover:bg-surface/80 rounded-lg transition-colors flex items-center justify-between group"
-                  >
-                    <span>{link.label}</span>
-                    <span className="text-muted/40 group-hover:text-signal transition-colors text-xs">→</span>
-                  </Link>
-                ))}
-
+        <div className="lg:hidden w-full bg-canvas/98 border-t border-border shadow-2xl py-6 px-4 transition-all duration-200">
+          <nav className="flex flex-col items-center justify-center gap-2.5 text-center" aria-label="Mobile">
+            {navLinks.map((link, idx) => {
+              const isFirst = idx === 0;
+              return (
                 <Link
-                  href="/tools"
+                  key={link.href}
+                  href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3.5 py-2.5 text-sm font-medium text-signal hover:bg-surface/80 rounded-lg transition-colors flex items-center justify-between border-t border-border/50 mt-2 pt-3"
+                  className={`text-sm font-medium transition-colors py-2 px-5 rounded-xl ${
+                    isFirst
+                      ? "bg-signal/15 text-signal font-semibold shadow-xs"
+                      : "text-ink/80 hover:text-signal hover:bg-surface"
+                  }`}
                 >
-                  <span>Diagnostic Tools (ISP/NOC)</span>
-                  <span className="text-[10px] font-mono bg-surface px-1.5 py-0.5 rounded border border-border">/tools</span>
+                  {link.label}
                 </Link>
-              </nav>
-            </div>
+              );
+            })}
 
-            {/* Bottom Actions inside drawer */}
-            <div className="pt-6 border-t border-border/60 flex flex-col gap-3">
-              <Button size="sm" className="w-full h-10 font-semibold" asChild>
+            <Link
+              href="/tools"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-medium text-signal hover:bg-surface py-2 px-5 rounded-xl transition-colors"
+            >
+              Diagnostic Tools (ISP/NOC)
+            </Link>
+
+            {/* Download CV */}
+            <div className="w-full max-w-[220px] pt-2">
+              <Button size="sm" className="w-full h-9 font-semibold" asChild>
                 <a href={personal.cvUrl} download onClick={() => setMobileMenuOpen(false)}>
                   <Download className="mr-2 h-4 w-4" />
-                  Download Curriculum Vitae
+                  Download CV
                 </a>
               </Button>
             </div>
-          </div>
+
+            {/* Centered Theme Toggle in Rounded Box (Exactly like reference image) */}
+            <div className="pt-3">
+              <button
+                type="button"
+                onClick={toggleDark}
+                className="flex items-center justify-center w-12 h-12 rounded-2xl border border-border bg-surface hover:bg-border/60 text-ink shadow-xs transition-colors cursor-pointer"
+                aria-label={dark ? "Aktifkan mode terang" : "Aktifkan mode gelap"}
+                title={dark ? "Mode Terang" : "Mode Gelap"}
+              >
+                {mounted && dark ? (
+                  <Sun className="h-5 w-5 text-signal" />
+                ) : (
+                  <Moon className="h-5 w-5 text-ink fill-ink/10" />
+                )}
+              </button>
+            </div>
+          </nav>
         </div>
       )}
     </header>
