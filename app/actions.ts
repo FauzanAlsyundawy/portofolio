@@ -10,20 +10,25 @@ export async function sendContactMessage(formData: {
   message: string;
 }) {
   const destination =
-    formData.targetEmail === "falsyundawy@mail.indocyber.my.id"
-      ? "falsyundawy@mail.indocyber.my.id"
+    formData.targetEmail === "administrator@fauzanalsyundawy.my.id"
+      ? "administrator@fauzanalsyundawy.my.id"
       : "falsyundawy@gmail.com";
 
   // 1. Coba kirim via Resend jika API key tersedia di Dokploy/environment
   if (process.env.RESEND_API_KEY) {
     try {
       const resend = new Resend(process.env.RESEND_API_KEY);
+      // Kirim notif ke email tujuan via Resend
+      // "from" harus menggunakan domain yang sudah diverifikasi di Resend dashboard,
+      // atau gunakan onboarding@resend.dev hanya jika tujuan = email pemilik akun Resend.
+      // Solusi: kirim ke falsyundawy@gmail.com (pemilik akun) agar tidak diblokir,
+      // dengan info lengkap tujuan asli di body.
       await resend.emails.send({
         from: "Portfolio Contact <onboarding@resend.dev>",
-        to: [destination],
-        subject: `[Portfolio Kolaborasi] ${formData.subject}`,
+        to: ["falsyundawy@gmail.com"],
+        subject: `[Portfolio Kolaborasi] ${formData.subject} → ${destination}`,
         replyTo: formData.email,
-        text: `Pesan Kolaborasi Baru:\n\nPengirim: ${formData.name}\nEmail Pengirim: ${formData.email}\nTarget Tujuan: ${destination}\nSubjek: ${formData.subject}\n\nIsi Pesan:\n${formData.message}`,
+        text: `Pesan Kolaborasi Baru:\n\nPengirim: ${formData.name}\nEmail Pengirim: ${formData.email}\nDikirim ke: ${destination}\nSubjek: ${formData.subject}\n\nIsi Pesan:\n${formData.message}`,
       });
       return { ok: true, destination, method: "resend" };
     } catch (resendErr) {
@@ -38,8 +43,8 @@ export async function sendContactMessage(formData: {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Origin: "https://falsyundawy.my.id",
-        Referer: "https://falsyundawy.my.id/",
+        Origin: "https://fauzanalsyundawy.my.id",
+        Referer: "https://fauzanalsyundawy.my.id/",
       },
       body: JSON.stringify({
         name: formData.name,

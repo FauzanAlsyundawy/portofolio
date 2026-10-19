@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 const schema = z.object({
   name: z.string().min(2, "Nama minimal 2 karakter"),
   email: z.string().email("Format email tidak valid"),
-  targetEmail: z.enum(["falsyundawy@gmail.com", "falsyundawy@mail.indocyber.my.id"]),
+  targetEmail: z.enum(["falsyundawy@gmail.com", "administrator@fauzanalsyundawy.my.id"]),
   subject: z.string().min(3, "Subjek minimal 3 karakter"),
   message: z.string().min(10, "Pesan minimal 10 karakter"),
 });
@@ -76,7 +76,7 @@ function ContactFooter() {
           window.open(gmailUrl, "_blank");
           toast.info("Membuka Gmail Web untuk melanjutkan pengiriman...");
         } else {
-          const mailtoUrl = `mailto:${data.targetEmail}?subject=${encodeURIComponent(
+          const mailtoUrl = `mailto:administrator@fauzanalsyundawy.my.id?subject=${encodeURIComponent(
             `[Kolaborasi Portfolio] ${data.subject}`
           )}&body=${encodeURIComponent(
             `Halo Fauzan,\n\nNama Pengirim: ${data.name}\nEmail Pengirim: ${data.email}\n\nIsi Pesan:\n${data.message}`
@@ -165,14 +165,14 @@ function ContactFooter() {
                   <label
                     className={cn(
                       "flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all",
-                      selectedTarget === "falsyundawy@mail.indocyber.my.id"
+                      selectedTarget === "administrator@fauzanalsyundawy.my.id"
                         ? "border-signal bg-signal/5 ring-2 ring-signal/30 text-ink shadow-xs"
                         : "border-border bg-canvas text-muted hover:border-signal/50 hover:bg-surface/50"
                     )}
                   >
                     <input
                       type="radio"
-                      value="falsyundawy@mail.indocyber.my.id"
+                      value="administrator@fauzanalsyundawy.my.id"
                       {...register("targetEmail")}
                       className="sr-only"
                     />
@@ -181,7 +181,7 @@ function ContactFooter() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-xs font-semibold text-ink">Email Server</p>
-                      <p className="text-xs text-muted truncate font-mono">mail.indocyber.my.id</p>
+                      <p className="text-xs text-muted truncate font-mono">administrator@fauzanalsyundawy.my.id</p>
                     </div>
                   </label>
                 </div>
@@ -250,8 +250,8 @@ function ContactFooter() {
                 <div className="flex justify-between items-center py-1 border-b border-border/50">
                   <dt className="text-muted">Email Server</dt>
                   <dd className="font-mono text-xs text-ink font-semibold">
-                    <a href="mailto:falsyundawy@mail.indocyber.my.id" className="hover:text-signal transition-colors">
-                      mail.indocyber.my.id
+                    <a href="mailto:administrator@fauzanalsyundawy.my.id" className="hover:text-signal transition-colors">
+                      administrator@fauzanalsyundawy.my.id
                     </a>
                   </dd>
                 </div>
