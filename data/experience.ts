@@ -3,14 +3,15 @@ import { type ExperienceEntry } from "./types";
 export const experience: ExperienceEntry[] = [
   {
     company: "PT Media Cepat Indonesia (Rapid Network)",
-    role: "Field Operations (Probation)",
-    startDate: "20 Desember 2025",
+    role: "Field Engineer",
+    startDate: "24 September 2026",
     logo: "/rapid-network.png",
     highlights: [
-      "Operasional dan penanganan infrastruktur fisik jaringan di lapangan.",
-      "Instalasi, penarikan kabel, konfigurasi, dan pemeliharaan perangkat jaringan on-site.",
-      "Troubleshooting konektivitas jaringan end-to-end serta penanganan cepat insiden di lokasi.",
-      "Koordinasi berkala dengan tim NOC dalam monitoring stabilitas dan pemulihan gangguan link transmisi.",
+      "Pemeliharaan Infrastruktur: Mengelola kabel struktural, ruang panel, dan fasilitas fisik data center secara berkala.",
+      "Instalasi Kabel Optik: Melakukan penarikan, penyambungan (splicing), dan terminasi kabel serat optik per OTB secara presisi.",
+      "Monitoring Keamanan: Mengawasi area sensitif dan ruang server via CCTV untuk mencegah gangguan fisik.",
+      "Kontrol Suhu & Panel: Memantau suhu serta kelembapan ruang server dan panel guna mencegah overheating.",
+      "Koordinasi & NOC: Berkolaborasi dengan tim NOC untuk pelaporan lapangan dan penanganan insiden konektivitas cepat.",
     ],
   },
   {
